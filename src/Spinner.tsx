@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Loader from "react-loader-spinner";
+import "./Spinner.css";
 
 interface State {
   timedOut: boolean;
