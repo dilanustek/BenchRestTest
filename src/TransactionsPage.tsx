@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import TransactionsTable from "./TransactionsTable";
 import { Transaction, TransactionAPI } from "./types";
+import ErrorState from "./ErrorState";
 
 interface State {
   transactionsData: Transaction[];
+  isError: boolean;
 }
 
 class TransactionsPage extends Component<{}, State> {
   state = {
     transactionsData: [],
+    isError: false,
   };
 
   // Fetch all data dynamically. Number of transactions may have changed in the meantime.
@@ -57,16 +60,21 @@ class TransactionsPage extends Component<{}, State> {
         this.setState({ transactionsData: allData });
       })
       .catch((error) => {
+        this.setState({ isError: true });
+        // normally you would log this in your error tracker
         console.log("Caught error:", error);
       });
   }
 
+  getReturnComponent() {
+    if (this.state.isError) {
+      return <ErrorState />;
+    }
+    return <TransactionsTable allTransactions={this.state.transactionsData} />;
+  }
+
   render() {
-    return (
-      <div>
-        <TransactionsTable allTransactions={this.state.transactionsData} />
-      </div>
-    );
+    return <div>{this.getReturnComponent()}</div>;
   }
 }
 
