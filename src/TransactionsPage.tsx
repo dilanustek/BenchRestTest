@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TransactionsTable from "./TransactionsTable";
 
 class TransactionsPage extends Component {
   componentDidMount() {
@@ -22,7 +23,11 @@ class TransactionsPage extends Component {
   }
 
   render() {
-    return <div> Hello world</div>;
+    return (
+      <div>
+        <TransactionsTable />
+      </div>
+    );
   }
 }
 
