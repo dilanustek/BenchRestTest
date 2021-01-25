@@ -11,16 +11,24 @@ class TransactionsPage extends Component<{}, State> {
     transactionsData: [],
   };
 
+  // Fetch all data dynamically. Number of transactions may have changed in the meantime.
   async fetchTransactionData() {
     let allData: Transaction[] = [];
     let morePagesAvailable = true;
     let currentTransactionsCount = 0;
     let currentPage = 1;
 
+    // sequentially fetch each page
     while (morePagesAvailable) {
       const response = await fetch(
         `https://resttest.bench.co/transactions/${currentPage}.json`
       );
+
+      // anything other than 200 OK will throw an error
+      if (response.status !== 200) {
+        throw new Error("Unexpected server status: " + response.status);
+      }
+
       let { transactions, totalCount } = await response.json();
 
       allData = [...allData, ...transactions];
@@ -33,10 +41,15 @@ class TransactionsPage extends Component<{}, State> {
     return allData;
   }
 
+  // fetch all transactions on mount and set to state
   componentDidMount() {
-    this.fetchTransactionData().then((allData) => {
-      this.setState({ transactionsData: allData });
-    });
+    this.fetchTransactionData()
+      .then((allData) => {
+        this.setState({ transactionsData: allData });
+      })
+      .catch((error) => {
+        console.log("Caught error:", error);
+      });
   }
 
   render() {
