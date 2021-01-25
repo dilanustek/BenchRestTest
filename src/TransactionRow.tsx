@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Transaction } from "./types";
+import "./TransactionRow.css";
 
 interface Props {
   transactionItem: Transaction;
@@ -8,11 +9,11 @@ interface Props {
 class TransactionRow extends Component<Props, {}> {
   render() {
     return (
-      <tr>
-        <td>{this.props.transactionItem.date}</td>
-        <td>{this.props.transactionItem.company}</td>
-        <td>{this.props.transactionItem.ledger}</td>
-        <td>{this.props.transactionItem.amount}</td>
+      <tr className="row">
+        <td className="cell">{this.props.transactionItem.date}</td>
+        <td className="cell">{this.props.transactionItem.company}</td>
+        <td className="cell">{this.props.transactionItem.ledger}</td>
+        <td className="cell">{this.props.transactionItem.amount}</td>
       </tr>
     );
   }

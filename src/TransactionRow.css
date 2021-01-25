@@ -1,0 +1,14 @@
+.row {
+  height: 32px;
+  border: 1px solid rgb(226, 226, 226);
+  background-color: #ececec;
+}
+
+.row:hover {
+  background-color: antiquewhite;
+  color: #0a8b8c;
+}
+
+.cell {
+  padding: 14px;
+}

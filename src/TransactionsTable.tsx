@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TransactionRow from "./TransactionRow";
 import { Transaction } from "./types";
+import "./TransactionsTable.css";
 
 interface Props {
   allTransactions: Transaction[];
@@ -18,13 +19,13 @@ class TransactionsTable extends Component<Props, {}> {
 
   render() {
     return (
-      <table>
+      <table className="table">
         <thead>
-          <tr>
-            <th>Date</th>
-            <th>Company</th>
-            <th>Ledger</th>
-            <th>{this.computeBalance()}</th>
+          <tr className="headerRow">
+            <th className="cell">Date</th>
+            <th className="cell">Company</th>
+            <th className="cell">Ledger</th>
+            <th className="cell">{this.computeBalance()}</th>
           </tr>
         </thead>
         <tbody>
