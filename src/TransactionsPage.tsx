@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import TransactionsTable from "./TransactionsTable";
+import { Transaction } from "./types";
 
-class TransactionsPage extends Component {
+interface State {
+  transactionsData: Transaction[];
+}
+
+class TransactionsPage extends Component<{}, State> {
+  state = {
+    transactionsData: [],
+  };
+
   componentDidMount() {
     const URL = "https://resttest.bench.co/transactions/1.json";
 
@@ -18,6 +27,9 @@ class TransactionsPage extends Component {
           transactions: [];
         }) => {
           console.log(totalCount, transactions);
+          this.setState({
+            transactionsData: transactions,
+          });
         }
       );
   }
@@ -25,7 +37,7 @@ class TransactionsPage extends Component {
   render() {
     return (
       <div>
-        <TransactionsTable />
+        <TransactionsTable allTransactions={this.state.transactionsData} />
       </div>
     );
   }

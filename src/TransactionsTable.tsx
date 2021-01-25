@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import TransactionRow from "./TransactionRow";
+import { Transaction } from "./types";
 
-class TransactionsTable extends Component {
+interface Props {
+  allTransactions: Transaction[];
+}
+class TransactionsTable extends Component<Props, {}> {
   render() {
     return (
       <table>
@@ -11,7 +15,9 @@ class TransactionsTable extends Component {
           </tr>
         </thead>
         <tbody>
-          <TransactionRow />
+          {this.props.allTransactions.map((entry) => (
+            <TransactionRow key={entry.date + entry.amount} />
+          ))}
         </tbody>
       </table>
     );
