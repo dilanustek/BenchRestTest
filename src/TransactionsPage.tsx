@@ -11,27 +11,32 @@ class TransactionsPage extends Component<{}, State> {
     transactionsData: [],
   };
 
-  componentDidMount() {
-    const URL = "https://resttest.bench.co/transactions/1.json";
+  async fetchTransactionData() {
+    let allData: Transaction[] = [];
+    let morePagesAvailable = true;
+    let currentTransactionsCount = 0;
+    let currentPage = 1;
 
-    fetch(URL)
-      .then((response) => {
-        return response.json();
-      })
-      .then(
-        ({
-          totalCount,
-          transactions,
-        }: {
-          totalCount: number;
-          transactions: Transaction[];
-        }) => {
-          console.log(totalCount, transactions);
-          this.setState({
-            transactionsData: transactions,
-          });
-        }
+    while (morePagesAvailable) {
+      const response = await fetch(
+        `https://resttest.bench.co/transactions/${currentPage}.json`
       );
+      let { transactions, totalCount } = await response.json();
+
+      allData = [...allData, ...transactions];
+
+      currentTransactionsCount += transactions.length;
+      morePagesAvailable = currentTransactionsCount < totalCount;
+      currentPage++;
+    }
+
+    return allData;
+  }
+
+  componentDidMount() {
+    this.fetchTransactionData().then((allData) => {
+      this.setState({ transactionsData: allData });
+    });
   }
 
   render() {
