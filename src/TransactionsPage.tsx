@@ -3,6 +3,7 @@ import TransactionsTable from "./TransactionsTable";
 import { Transaction, TransactionAPI } from "./types";
 import ErrorState from "./ErrorState";
 import Spinner from "./Spinner";
+import "./TransactionsPage.css";
 
 interface State {
   transactionsData: Transaction[];
@@ -78,7 +79,7 @@ class TransactionsPage extends Component<{}, State> {
   }
 
   render() {
-    return <div>{this.getReturnComponent()}</div>;
+    return <div className="transactionsPage">{this.getReturnComponent()}</div>;
   }
 }
 
