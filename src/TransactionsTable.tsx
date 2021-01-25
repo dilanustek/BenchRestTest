@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TransactionRow from "./TransactionRow";
 import { Transaction } from "./types";
 import "./TransactionsTable.css";
+import { getReadableAmount } from "./currencyHelpers";
 
 interface Props {
   allTransactions: Transaction[];
@@ -12,7 +13,7 @@ class TransactionsTable extends Component<Props, {}> {
   computeBalance() {
     let balance = 0;
     this.props.allTransactions.forEach((tr) => {
-      balance += parseFloat(tr.amount);
+      balance += tr.amount;
     });
     return balance;
   }
@@ -25,7 +26,7 @@ class TransactionsTable extends Component<Props, {}> {
             <th className="cell">Date</th>
             <th className="cell">Company</th>
             <th className="cell">Ledger</th>
-            <th className="cell">{this.computeBalance()}</th>
+            <th className="cell">{getReadableAmount(this.computeBalance())}</th>
           </tr>
         </thead>
         <tbody>
