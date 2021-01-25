@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TransactionRow from "./TransactionRow";
 
 class TransactionsTable extends Component {
   render() {
@@ -10,8 +11,7 @@ class TransactionsTable extends Component {
           </tr>
         </thead>
         <tbody>
-          <td>hello</td>
-          <td>world</td>
+          <TransactionRow />
         </tbody>
       </table>
     );
