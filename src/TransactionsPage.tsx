@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TransactionsTable from "./TransactionsTable";
-import { Transaction } from "./types";
+import { Transaction, TransactionAPI } from "./types";
 
 interface State {
   transactionsData: Transaction[];
@@ -31,9 +31,18 @@ class TransactionsPage extends Component<{}, State> {
 
       let { transactions, totalCount } = await response.json();
 
-      allData = [...allData, ...transactions];
+      // save each transaction from TransactionAPI to Transaction type to include a unique id
+      transactions.forEach((tr: TransactionAPI) => {
+        allData.push({
+          amount: tr.Amount,
+          date: tr.Date,
+          company: tr.Company,
+          ledger: tr.Ledger,
+          id: currentTransactionsCount,
+        });
+        currentTransactionsCount++;
+      });
 
-      currentTransactionsCount += transactions.length;
       morePagesAvailable = currentTransactionsCount < totalCount;
       currentPage++;
     }

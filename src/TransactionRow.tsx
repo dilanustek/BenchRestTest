@@ -9,10 +9,10 @@ class TransactionRow extends Component<Props, {}> {
   render() {
     return (
       <tr>
-        <td>{this.props.transactionItem.Date}</td>
-        <td>{this.props.transactionItem.Company}</td>
-        <td>{this.props.transactionItem.Ledger}</td>
-        <td>{this.props.transactionItem.Amount}</td>
+        <td>{this.props.transactionItem.date}</td>
+        <td>{this.props.transactionItem.company}</td>
+        <td>{this.props.transactionItem.ledger}</td>
+        <td>{this.props.transactionItem.amount}</td>
       </tr>
     );
   }
