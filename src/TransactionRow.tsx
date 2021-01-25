@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Transaction } from "./types";
 import "./TransactionRow.css";
 import { getReadableAmount } from "./currencyHelpers";

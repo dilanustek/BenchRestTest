@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import TransactionsTable from "./TransactionsTable";
 import { Transaction, TransactionAPI } from "./types";
 import ErrorState from "./ErrorState";
