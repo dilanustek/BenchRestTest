@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TransactionsTable from "./TransactionsTable";
 import { Transaction, TransactionAPI } from "./types";
 import ErrorState from "./ErrorState";
+import Spinner from "./Spinner";
 
 interface State {
   transactionsData: Transaction[];
@@ -69,6 +70,9 @@ class TransactionsPage extends Component<{}, State> {
   getReturnComponent() {
     if (this.state.isError) {
       return <ErrorState />;
+    }
+    if (this.state.transactionsData.length === 0) {
+      return <Spinner />;
     }
     return <TransactionsTable allTransactions={this.state.transactionsData} />;
   }
