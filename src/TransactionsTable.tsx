@@ -6,6 +6,16 @@ interface Props {
   allTransactions: Transaction[];
 }
 class TransactionsTable extends Component<Props, {}> {
+  /*   Compute balance when table is rendered so that if there are changes
+    to transactions, the balance can change dynamically */
+  computeBalance() {
+    let balance = 0;
+    this.props.allTransactions.forEach((tr) => {
+      balance += parseFloat(tr.amount);
+    });
+    return balance;
+  }
+
   render() {
     return (
       <table>
@@ -14,7 +24,7 @@ class TransactionsTable extends Component<Props, {}> {
             <th>Date</th>
             <th>Company</th>
             <th>Ledger</th>
-            <th>Amount</th>
+            <th>{this.computeBalance()}</th>
           </tr>
         </thead>
         <tbody>
