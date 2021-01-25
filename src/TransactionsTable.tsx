@@ -13,7 +13,7 @@ class TransactionsTable extends Component<Props, {}> {
   computeBalance() {
     let balance = 0;
     this.props.allTransactions.forEach((tr) => {
-      balance += tr.amount;
+      balance += tr.amountInCents;
     });
     return balance;
   }

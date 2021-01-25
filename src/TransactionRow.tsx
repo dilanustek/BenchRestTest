@@ -15,7 +15,7 @@ class TransactionRow extends Component<Props, {}> {
         <td className="cell">{this.props.transactionItem.company}</td>
         <td className="cell">{this.props.transactionItem.ledger}</td>
         <td className="cell">
-          {getReadableAmount(this.props.transactionItem.amount)}
+          {getReadableAmount(this.props.transactionItem.amountInCents)}
         </td>
       </tr>
     );

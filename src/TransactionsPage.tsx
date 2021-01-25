@@ -39,7 +39,8 @@ class TransactionsPage extends Component<{}, State> {
       // save each transaction from TransactionAPI to Transaction type to include a unique id
       transactions.forEach((tr: TransactionAPI) => {
         allData.push({
-          amount: parseFloat(tr.Amount),
+          // Store in cents to avoid rounding error in float computation
+          amountInCents: Math.floor(parseFloat(tr.Amount) * 100),
           date: tr.Date,
           company: tr.Company,
           ledger: tr.Ledger,
