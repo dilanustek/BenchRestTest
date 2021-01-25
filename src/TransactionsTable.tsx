@@ -16,7 +16,11 @@ class TransactionsTable extends Component<Props, {}> {
         </thead>
         <tbody>
           {this.props.allTransactions.map((entry) => (
-            <TransactionRow key={entry.date + entry.amount} />
+            <TransactionRow
+              //   key={entry.date + entry.amount}
+              key={Math.random()}
+              transactionItem={entry}
+            />
           ))}
         </tbody>
       </table>

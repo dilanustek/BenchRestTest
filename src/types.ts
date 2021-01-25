@@ -1,6 +1,6 @@
 export type Transaction = {
-    amount: string;
-    company: string;
-    date: string;
-    ledger: string;
+    Amount: string;
+    Company: string;
+    Date: string;
+    Ledger: string;
 }

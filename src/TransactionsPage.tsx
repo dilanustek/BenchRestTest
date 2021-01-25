@@ -24,7 +24,7 @@ class TransactionsPage extends Component<{}, State> {
           transactions,
         }: {
           totalCount: number;
-          transactions: [];
+          transactions: Transaction[];
         }) => {
           console.log(totalCount, transactions);
           this.setState({
