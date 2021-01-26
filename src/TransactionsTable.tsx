@@ -26,7 +26,9 @@ class TransactionsTable extends Component<Props, {}> {
             <th className="cell">Date</th>
             <th className="cell">Company</th>
             <th className="cell">Ledger</th>
-            <th className="cell">{getReadableAmount(this.computeBalance())}</th>
+            <th className="cell" data-testid="total">
+              {getReadableAmount(this.computeBalance())}
+            </th>
           </tr>
         </thead>
         <tbody>

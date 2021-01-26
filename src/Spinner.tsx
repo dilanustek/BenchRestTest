@@ -28,7 +28,7 @@ export default class Spinner extends Component<{}, State> {
 
   render() {
     return (
-      <div className="spinnerContainer">
+      <div className="spinnerContainer" data-testid="spinnerContainer">
         {this.state.timedOut ? (
           <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
         ) : null}
