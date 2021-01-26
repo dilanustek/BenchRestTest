@@ -80,7 +80,14 @@ class TransactionsPage extends Component<{}, State> {
   }
 
   render() {
-    return <div className="transactionsPage">{this.getReturnComponent()}</div>;
+    return (
+      <>
+        <header className="transactionsPage-header">
+          <p>Bench Transactions</p>
+        </header>
+        <div className="transactionsPage">{this.getReturnComponent()}</div>
+      </>
+    );
   }
 }
 
